@@ -1,0 +1,18 @@
+<h1>New Post</h1>
+
+<%= form_for :post, url: posts_path do |f| %>
+  <%= f.label :title %><br>
+  <%= f.text_field :title %><br>
+  <br>
+  <%= f.label :body %><br>
+  <%= f.text_field :body %><br>
+  <br>
+  <%= f.submit %>
+<% end %>
+
+<% @posts.each do |post| %>
+  <div class="post_wrapper">
+    <h2 class="title"><%= link_to post.title, post %></h2>
+    <p class="date"><%= post.created_at.strftime("%B %d, %Y") %></p>
+  </div>
+  <% end %>
