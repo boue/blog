@@ -28,7 +28,17 @@
        <li><a href="mailto:hey@mackenziechild.me">Email</a></li>
     </ul>
      
-    <p class="sign_in">Admin Login</p>
+    <% if !user_signed_in? %>
+      <p class="sign_in"><%= link_to "Admin Login", new_user_session_path %></p>
+    <% end %>
+
+    <% if user_signed_in? %> 
+        <div class="buttons"> 
+          <button class="button"><%= link_to "New Post", new_post_path %></button> 
+          <button class="button">Log Out</button> 
+        </div> 
+      <% end %> 
+      
   </div>
 
   <div id="main_content">
@@ -47,6 +57,13 @@
       <%= content_tag(:div, msg, class: "alert") %>
     <% end %>
 
+    <% if notice %>
+      <p class="alert alert-success"><%= notice %></p>
+    <% end %>
+    <% if alert %>
+      <p class="alert alert-danger"><%= alert %></p>
+    <% end %>
+    
   <%= yield %>
   
   </div>
